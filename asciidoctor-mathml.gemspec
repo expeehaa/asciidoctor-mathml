@@ -16,4 +16,7 @@ Gem::Specification.new do |spec|
 	
 	spec.files         = Dir['lib/**/*']
 	spec.require_paths = ['lib']
+	
+	spec.add_runtime_dependency 'asciidoctor'
+	spec.add_runtime_dependency 'asciimath'
 end
