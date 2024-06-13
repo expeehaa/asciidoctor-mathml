@@ -87,6 +87,14 @@ module Asciidoctor
 			
 			def convert_asciimath_to_mathml(text)
 				AsciiMath.parse(CGI.unescape_html(text)).to_mathml
+			rescue StandardError
+				warn <<~MESSAGE
+					Failed to parse the following Asciimath code:
+					
+					#{text}
+				MESSAGE
+				
+				raise
 			end
 		end
 	end

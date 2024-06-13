@@ -427,5 +427,15 @@ RSpec.describe Asciidoctor::Mathml::StemTreeProcessor do
 				</div>
 			OUTPUT
 		end
+		
+		it 'prints a message when parsing failed' do
+			expect{Asciidoctor.convert(<<~INPUT)}.to raise_error(NoMethodError, %q{asciidoctor: FAILED: <stdin>: Failed to load AsciiDoc document - undefined method `[]' for nil}).and output(<<~OUTPUT).to_stderr
+				asciimath:[invalid"syntax]
+			INPUT
+				Failed to parse the following Asciimath code:
+				
+				invalid"syntax
+			OUTPUT
+		end
 	end
 end
